@@ -69,7 +69,7 @@ python -m infer.py \
 ## Citation
 
 ```
-@misc{TBD}
+@misc{ TBD}
 }
 ```
 
