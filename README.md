@@ -1,7 +1,7 @@
 # TResNet: High Performance GPU-Dedicated Architecture
 
 
-[paper](TBD) | [pretrained models](https://drive.google.com/open?id=1a4GqqQ24J3ct8WkOM6t0DqmX3BlkhUwC) 
+[paper](https://arxiv.org/pdf/2003.13630.pdf) | [pretrained models](https://drive.google.com/open?id=1a4GqqQ24J3ct8WkOM6t0DqmX3BlkhUwC) 
 
 Official PyTorch Implementation
 
@@ -54,22 +54,28 @@ Official PyTorch Implementation
 
 ## Reproduce Results
 We provide code for reproducing the validation top-1 score of TResNet
-models on ImageNet, input resolution 224. First, download pretrained 
+models on ImageNet (input resolution 224). First, download pretrained 
 models from
 [here](https://drive.google.com/open?id=1a4GqqQ24J3ct8WkOM6t0DqmX3BlkhUwC).
 
 Then, run the infer.py script. For example, for tresnet_m run:
 ```bash
 python -m infer.py \
---val_dir=/path/to/imagenet_val_folder
---model_path=/model/path/to/tresnet_m.pth
+--val_dir=/path/to/imagenet_val_folder \
+--model_path=/model/path/to/tresnet_m.pth \
 --model_name=tresnet_m
 ```
 
 ## Citation
 
 ```
-@misc{ TBD}
+@misc{ridnik2020tresnet,
+    title={TResNet: High Performance GPU-Dedicated Architecture},
+    author={Tal Ridnik and Hussam Lawen and Asaf Noy and Itamar Friedman},
+    year={2020},
+    eprint={2003.13630},
+    archivePrefix={arXiv},
+    primaryClass={cs.CV}
 }
 ```
 
