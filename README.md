@@ -32,23 +32,284 @@ Official PyTorch Implementation
 > Oxford-Flowers (99.1\%)
 ## Main Results
 #### TResNet Models
+TResNet models accuracy and GPU throughput on ImageNet, compared to ResNet50. All measurements were done on Nvidia V100 GPU, with mixed precision. All models are trained on input resolution of 224.
 <p align="center">
- <img src="./figures/table_3.png" align="center" width="320" >
+ <table>
+  <tr>
+    <th>Models</th>
+    <th>Top Training Speed <br>(img/sec)</th>
+    <th>Top Inference Speed<br>(img/sec)</th>
+    <th>Max Train Batch Size</th>
+    <th>Top-1 Acc.</th>
+  </tr>
+  <tr>
+    <td>ResNet50</td>
+    <td>805</td>
+    <td>2830</td>
+    <td>288</td>
+    <td>79.0</td>
+  </tr>
+  <tr>
+    <td>EfficientNetB1</td>
+    <td>440</td>
+    <td>2740</td>
+    <td>196</td>
+    <td>79.2</td>
+  </tr>
+  <tr>
+    <td>TResNet-M</td>
+    <td>730</td>
+    <td>2930</td>
+    <td>512</td>
+    <td>80.7</td>
+  </tr>
+  <tr>
+    <td>TResNet-L</td>
+    <td>345</td>
+    <td>1390</td>
+    <td>316</td>
+    <td>81.4</td>
+  </tr>
+  <tr>
+    <td>TResNet-XL</td>
+    <td>250</td>
+    <td>1060</td>
+    <td>240</td>
+    <td>82.0</td>
+  </tr>
+</table>
 </p>
 
 #### Comparison To Other Networks
+
+Comparison of ResNet50 to top modern networks, with similar top-1 ImageNet accuracy.
+ All measurements were done on Nvidia V100 GPU with mixed precision. For gaining optimal speeds, training and inference were measured on 90\% of maximal possible batch size.
+ Except TResNet-M, all the models' ImageNet scores were taken from the [public repository](https://github.com/rwightman/pytorch-image-models), which specialized in providing top implementations for modern networks. Except EfficientNet-B1, which has input resolution of 240, all other models have input resolution of 224.
 <p align="center">
- <img src="./figures/table_1.png" align="center" width="320" >
+<table class="tg">
+  <tr>
+    <th class="tg-c3ow">Model</th>
+    <th class="tg-c3ow">Top Training Speed<br>(img/sec)</th>
+    <th class="tg-c3ow">Top Inference Speed<br>(img/sec)</th>
+    <th class="tg-c3ow">Top-1 Acc.</th>
+    <th class="tg-c3ow">Flops[G]</th>
+  </tr>
+  <tr>
+    <td class="tg-0pky">ResNet50</td>
+   <td class="tg-c3ow"><b>805</b></td>
+    <td class="tg-c3ow">2830</td>
+    <td class="tg-c3ow">79.0</td>
+    <td class="tg-c3ow">4.1</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">ResNet50-D</td>
+    <td class="tg-c3ow">600</td>
+    <td class="tg-c3ow">2670</td>
+    <td class="tg-c3ow">79.3</td>
+    <td class="tg-c3ow">4.4</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">ResNeXt50</td>
+    <td class="tg-c3ow">490</td>
+    <td class="tg-c3ow">1940</td>
+    <td class="tg-c3ow">78.5</td>
+    <td class="tg-c3ow">4.3</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">EfficientNetB1</td>
+    <td class="tg-c3ow">440</td>
+    <td class="tg-c3ow">2740</td>
+    <td class="tg-c3ow">79.2</td>
+    <td class="tg-c3ow">0.6</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">SEResNeXt50</td>
+    <td class="tg-c3ow">400</td>
+    <td class="tg-c3ow">1770</td>
+    <td class="tg-c3ow">79.0</td>
+    <td class="tg-c3ow">4.3</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">MixNet-L</td>
+    <td class="tg-c3ow">400</td>
+    <td class="tg-c3ow">1400</td>
+    <td class="tg-c3ow">79.0</td>
+    <td class="tg-c3ow">0.5</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">TResNet-M</td>
+    <td class="tg-c3ow">730</td>
+   <td class="tg-c3ow"><b>2930</b></td>
+    <td class="tg-c3ow"><b>80.7</b></td>
+    <td class="tg-c3ow">5.5</td>
+  </tr>
+</table>
 </p>
+
  <br/>
 <p align="center">
- <img src="./figures/table_4.png" align="center" width="320" ><br/>
- <img src="./figures/table_5.png" align="center" width="320" >
+ <table class="tg">
+  <tr>
+    <td class="tg-c3ow"><img src="./figures/table_4.png" align="center" width="400" ></td>
+    <td class="tg-c3ow"><img src="./figures/table_5.png" align="center" width="400" ></td>
+  </tr>
+</table>
+</p>
+
+ 
 </p>
 
 #### Transfer Learning SotA Results
+Comparison of TResNet to state-of-the-art models on transfer learning datasets (only ImageNet-based transfer learning results). Models inference speed is measured on a mixed precision V100 GPU. Since no official implementation of  Gpipe was provided, its inference speed is unknown
+
 <p align="center">
- <img src="./figures/table_6.png" align="center" width="320" >
+ <table style="border-collapse: collapse; border: none; border-spacing: 0px;">
+	<tr>
+		<td style="border-width: 1px; border-style: solid; border-color: black; padding-right: 3pt; padding-left: 3pt;">
+			Dataset
+		</td>
+		<td style="border-right: 1px solid black; border-top: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			Model
+		</td>
+		<td style="border-right: 1px solid black; border-top: 1px solid black; border-bottom: 1px solid black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			Top-1
+			<br>
+			Acc.
+		</td>
+		<td style="border-right: 1px solid black; border-top: 1px solid black; border-bottom: 1px solid black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			Speed
+			<br>
+			img/sec
+		</td>
+		<td style="border-right: 1px solid black; border-top: 1px solid black; border-bottom: 1px solid black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			Input
+		</td>
+	</tr>
+	<tr>
+		<td rowspan="2" style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 2px double black; padding-right: 3pt; padding-left: 3pt;">
+			CIFAR-10
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			Gpipe
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			<b>99.0</b>
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			-
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			480
+		</td>
+	</tr>
+	<tr>
+		<td style="border-right: 1px solid black; border-bottom: 2px double black; padding-right: 3pt; padding-left: 3pt;">
+			TResNet-XL
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 2px double black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			<b>99.0</b>
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 2px double black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			<b>1060</b>
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 2px double black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			224
+		</td>
+	</tr>
+	<tr>
+		<td rowspan="2" style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 2px double black; padding-right: 3pt; padding-left: 3pt;">
+			CIFAR-100
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			EfficientNet-B7
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			<b>91.7</b>
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			70
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			600
+		</td>
+	</tr>
+	<tr>
+		<td style="border-right: 1px solid black; border-bottom: 2px double black; padding-right: 3pt; padding-left: 3pt;">
+			TResNet-XL
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 2px double black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			91.5
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 2px double black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			<b>1060</b>
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 2px double black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			224
+		</td>
+	</tr>
+	<tr>
+		<td rowspan="2" style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 2px double black; padding-right: 3pt; padding-left: 3pt;">
+			 Stanford Cars
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			EfficientNet-B7
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			94.7
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			70
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			600
+		</td>
+	</tr>
+	<tr>
+		<td style="border-right: 1px solid black; border-bottom: 2px double black; padding-right: 3pt; padding-left: 3pt;">
+			TResNet-L
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 2px double black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			<b>96.0</b>
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 2px double black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			<b>500</b>
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 2px double black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			368
+		</td>
+	</tr>
+	<tr>
+		<td rowspan="2" style="border-left: 1px solid black; border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			 Oxford-Flowers
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			EfficientNet-B7
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			98.8
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			70
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			600
+		</td>
+	</tr>
+	<tr>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; padding-right: 3pt; padding-left: 3pt;">
+			TResNet-L
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			<b>99.1</b>
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			<b>500</b>
+		</td>
+		<td style="border-right: 1px solid black; border-bottom: 1px solid black; text-align: center; padding-right: 3pt; padding-left: 3pt;">
+			368
+		</td>
+	</tr>
+</table>
 </p>
 
 
