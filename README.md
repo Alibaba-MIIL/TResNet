@@ -1,6 +1,14 @@
 # TResNet: High Performance GPU-Dedicated Architecture
 
 
+[![SotaBench](https://img.shields.io/endpoint.svg?url=https://sotabench.com/api/v0/badge/gh/hussam789/TResNet)](https://sotabench.com/user/hussam.lawen/repos/hussam789/TResNet)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tresnet-high-performance-gpu-dedicated/image-classification-on-imagenet)](https://paperswithcode.com/sota/image-classification-on-imagenet?p=tresnet-high-performance-gpu-dedicated)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tresnet-high-performance-gpu-dedicated/image-classification-on-cifar-10)](https://paperswithcode.com/sota/image-classification-on-cifar-10?p=tresnet-high-performance-gpu-dedicated)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tresnet-high-performance-gpu-dedicated/image-classification-on-cifar-100)](https://paperswithcode.com/sota/image-classification-on-cifar-100?p=tresnet-high-performance-gpu-dedicated)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tresnet-high-performance-gpu-dedicated/fine-grained-image-classification-on-stanford)](https://paperswithcode.com/sota/fine-grained-image-classification-on-stanford?p=tresnet-high-performance-gpu-dedicated)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tresnet-high-performance-gpu-dedicated/fine-grained-image-classification-on-oxford)](https://paperswithcode.com/sota/fine-grained-image-classification-on-oxford?p=tresnet-high-performance-gpu-dedicated)
+
+
 [paper](https://arxiv.org/pdf/2003.13630.pdf) | [pretrained models](https://drive.google.com/open?id=1a4GqqQ24J3ct8WkOM6t0DqmX3BlkhUwC) 
 
 Official PyTorch Implementation
