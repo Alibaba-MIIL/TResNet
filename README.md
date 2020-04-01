@@ -44,7 +44,7 @@ TResNet models accuracy and GPU throughput on ImageNet, compared to ResNet50. Al
   </tr>
   <tr>
     <td>ResNet50</td>
-    <td>805</td>
+    <td><b>805</b></td>
     <td>2830</td>
     <td>288</td>
     <td>79.0</td>
@@ -59,8 +59,8 @@ TResNet models accuracy and GPU throughput on ImageNet, compared to ResNet50. Al
   <tr>
     <td>TResNet-M</td>
     <td>730</td>
-    <td>2930</td>
-    <td>512</td>
+    <td><b>2930</b></td>
+    <td><b>512</b></td>
     <td>80.7</td>
   </tr>
   <tr>
@@ -75,7 +75,7 @@ TResNet models accuracy and GPU throughput on ImageNet, compared to ResNet50. Al
     <td>250</td>
     <td>1060</td>
     <td>240</td>
-    <td>82.0</td>
+    <td><b>82.0</b></td>
   </tr>
 </table>
 </p>
