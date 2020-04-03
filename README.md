@@ -323,16 +323,17 @@ Comparison of TResNet to state-of-the-art models on transfer learning datasets (
 
 ## Reproduce Results
 We provide code for reproducing the validation top-1 score of TResNet
-models on ImageNet (input resolution 224). First, download pretrained 
-models from
+models on ImageNet. First, download pretrained models from
 [here](https://drive.google.com/open?id=1a4GqqQ24J3ct8WkOM6t0DqmX3BlkhUwC).
 
-Then, run the infer.py script. For example, for tresnet_m run:
+Then, run the infer.py script. For example, for tresnet_m (input size 224)
+run:
 ```bash
 python -m infer.py \
 --val_dir=/path/to/imagenet_val_folder \
 --model_path=/model/path/to/tresnet_m.pth \
 --model_name=tresnet_m
+--input_size=224
 ```
 
 ## Citation

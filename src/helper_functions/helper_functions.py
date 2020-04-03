@@ -6,9 +6,13 @@ from torchvision.transforms import transforms
 
 def create_dataloader(args):
     val_bs = args.batch_size
-    val_tfms = transforms.Compose(
-        [transforms.Resize(int(args.input_size / args.val_zoom_factor)),
-         transforms.CenterCrop(args.input_size)])
+    if args.input_size == 448: # squish
+        val_tfms = transforms.Compose(
+            [transforms.Resize((args.input_size, args.input_size))])
+    else: # crop
+        val_tfms = transforms.Compose(
+            [transforms.Resize(int(args.input_size / args.val_zoom_factor)),
+             transforms.CenterCrop(args.input_size)])
     val_tfms.transforms.append(transforms.ToTensor())
     val_dataset = ImageFolder(args.val_dir, val_tfms)
     val_loader = torch.utils.data.DataLoader(
