@@ -14,6 +14,7 @@ parser.add_argument('--input_size', type=int, default=224)
 parser.add_argument('--val_zoom_factor', type=int, default=0.875)
 parser.add_argument('--batch_size', type=int, default=48)
 parser.add_argument('--num_workers', type=int, default=8)
+parser.add_argument('--remove_aa_jit', action='store_true', default=False)
 
 
 def main():
@@ -24,7 +25,7 @@ def main():
     print('creating model...')
     model = create_model(args).cuda()
     state = torch.load(args.model_path, map_location='cpu')['model']
-    model.load_state_dict(state, strict=True)
+    model.load_state_dict(state, strict=False)
     model.eval()
     print('done\n')
 

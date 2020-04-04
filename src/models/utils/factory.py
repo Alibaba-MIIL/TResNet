@@ -8,7 +8,7 @@ from ..tresnet import TResnetM, TResnetL, TResnetXL
 def create_model(args):
     """Create a model
     """
-    model_params = {'args': args, 'num_classes': args.num_classes}
+    model_params = {'args': args, 'num_classes': args.num_classes,'remove_aa_jit': args.remove_aa_jit}
     args = model_params['args']
     args.model_name = args.model_name.lower()
 

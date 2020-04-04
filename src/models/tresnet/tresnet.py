@@ -1,3 +1,5 @@
+from functools import partial
+
 import torch
 import torch.nn as nn
 from collections import OrderedDict
@@ -7,12 +9,14 @@ from .layers.squeeze_and_excite import SEModule
 from src.models.tresnet.layers.space_to_depth import SpaceToDepthModule
 from inplace_abn import InPlaceABN
 
+
 def IABN2float(module: nn.Module) -> nn.Module:
     "If `module` is IABN don't use half precision."
     if isinstance(module, InPlaceABN):
         module.float()
     for child in module.children(): IABN2float(child)
     return module
+
 
 def conv2d_ABN(ni, nf, stride, activation="leaky_relu", kernel_size=3, activation_param=1e-2, groups=1):
     return nn.Sequential(
@@ -109,12 +113,12 @@ class Bottleneck(nn.Module):
 
 class TResNet(nn.Module):
 
-    def __init__(self, layers, in_chans=3, num_classes=1000, width_factor=1.0):
+    def __init__(self, layers, in_chans=3, num_classes=1000, width_factor=1.0, remove_aa_jit=False):
         super(TResNet, self).__init__()
 
         # JIT layers
         space_to_depth = SpaceToDepthModule()
-        anti_alias_layer = AntiAliasDownsampleLayer
+        anti_alias_layer = partial(AntiAliasDownsampleLayer, remove_aa_jit=remove_aa_jit)
         global_pool_layer = FastGlobalAvgPool2d(flatten=True)
 
         # TResnet stages
@@ -193,7 +197,9 @@ def TResnetM(model_params):
     """
     in_chans = 3
     num_classes = model_params['num_classes']
-    model = TResNet(layers=[3, 4, 11, 3], num_classes=num_classes, in_chans=in_chans)
+    remove_aa_jit = model_params['remove_aa_jit']
+    model = TResNet(layers=[3, 4, 11, 3], num_classes=num_classes, in_chans=in_chans,
+                    remove_aa_jit=remove_aa_jit)
     return model
 
 
@@ -202,7 +208,9 @@ def TResnetL(model_params):
     """
     in_chans = 3
     num_classes = model_params['num_classes']
-    model = TResNet(layers=[4, 5, 18, 3], num_classes=num_classes, in_chans=in_chans, width_factor=1.2)
+    remove_aa_jit = model_params['remove_aa_jit']
+    model = TResNet(layers=[4, 5, 18, 3], num_classes=num_classes, in_chans=in_chans, width_factor=1.2,
+                    remove_aa_jit=remove_aa_jit)
     return model
 
 
@@ -211,6 +219,8 @@ def TResnetXL(model_params):
     """
     in_chans = 3
     num_classes = model_params['num_classes']
-    model = TResNet(layers=[4, 5, 24, 3], num_classes=num_classes, in_chans=in_chans, width_factor=1.3)
+    remove_aa_jit = model_params['remove_aa_jit']
+    model = TResNet(layers=[4, 5, 24, 3], num_classes=num_classes, in_chans=in_chans, width_factor=1.3,
+                    remove_aa_jit=remove_aa_jit)
 
     return model

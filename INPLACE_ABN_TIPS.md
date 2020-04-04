@@ -26,7 +26,7 @@ if isinstance(module, nn.BatchNorm2d) or isinstance(module, inplace_abn.InPlaceA
 ```
 
 ##### NVIDIA Apex mixed precision
-[NVIDIA Apex](https://github.com/NVIDIA/apex) O0,O1 and O3
+[NVIDIA Apex](https://github.com/NVIDIA/apex) O0, O1 and O3
 mixed-precision options work seemlesly on Inplace-ABN. 
 
 For O2 mixed precision, we need to convert manually Inplace-ABN to fp32,
