@@ -7,6 +7,13 @@ from .layers.squeeze_and_excite import SEModule
 from src.models.tresnet.layers.space_to_depth import SpaceToDepthModule
 from inplace_abn import InPlaceABN
 
+def IABN2float(module: nn.Module) -> nn.Module:
+    "If `module` is IABN don't use half precision."
+    if isinstance(module, InPlaceABN):
+        module.float()
+    for child in module.children(): IABN2float(child)
+    return module
+
 def conv2d_ABN(ni, nf, stride, activation="leaky_relu", kernel_size=3, activation_param=1e-2, groups=1):
     return nn.Sequential(
         nn.Conv2d(ni, nf, kernel_size=kernel_size, stride=stride, padding=kernel_size // 2, groups=groups,

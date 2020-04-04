@@ -336,6 +336,11 @@ python -m infer.py \
 --input_size=224
 ```
 
+## Tips For Working With Inplace-ABN
+See
+[INPLACE_ABN_TIPS](https://github.com/mrT23/TResNet/src/INPLACE_ABN_TIPS.md).
+
+
 ## Citation
 
 ```
