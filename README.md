@@ -9,7 +9,7 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tresnet-high-performance-gpu-dedicated/fine-grained-image-classification-on-oxford)](https://paperswithcode.com/sota/fine-grained-image-classification-on-oxford?p=tresnet-high-performance-gpu-dedicated)
 
 
-[paper](https://arxiv.org/pdf/2003.13630.pdf) | [pretrained models](https://drive.google.com/open?id=1a4GqqQ24J3ct8WkOM6t0DqmX3BlkhUwC) 
+[paper](https://arxiv.org/pdf/2003.13630.pdf) | [pretrained models](MODEL_ZOO.md) 
 
 Official PyTorch Implementation
 
@@ -324,7 +324,7 @@ Comparison of TResNet to state-of-the-art models on transfer learning datasets (
 ## Reproduce Results
 We provide code for reproducing the validation top-1 score of TResNet
 models on ImageNet. First, download pretrained models from
-[here](https://drive.google.com/open?id=1a4GqqQ24J3ct8WkOM6t0DqmX3BlkhUwC).
+[here](MODEL_ZOO.md).
 
 Then, run the infer.py script. For example, for tresnet_m (input size 224)
 run:
