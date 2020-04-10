@@ -10,11 +10,11 @@ from src.models.tresnet.layers.space_to_depth import SpaceToDepthModule
 from inplace_abn import InPlaceABN
 
 
-def IABN2float(module: nn.Module) -> nn.Module:
+def IABN2Float(module: nn.Module) -> nn.Module:
     "If `module` is IABN don't use half precision."
     if isinstance(module, InPlaceABN):
         module.float()
-    for child in module.children(): IABN2float(child)
+    for child in module.children(): IABN2Float(child)
     return module
 
 

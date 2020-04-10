@@ -1,6 +1,8 @@
 ## Some Tips For Working With Inplace-ABN
 
-[Inplace-ABN](https://github.com/mapillary/inplace_abn) have exactly the same fields as
+Inplace batch-norm 
+([Inplace-ABN](https://github.com/mapillary/inplace_abn)) module has
+exactly the same fields as
 [regular BatchNorm](https://github.com/pytorch/pytorch/blob/master/torch/nn/modules/batchnorm.py):
 * module.weight
 * module.bias
@@ -19,7 +21,7 @@ if isinstance(module, nn.BatchNorm2d):
 ```
 
 Anywhere you see a code segement like this, it needs to be replaced with
-a condition that include Inplace-ABN:
+a condition that includes Inplace-ABN:
 ```
 if isinstance(module, nn.BatchNorm2d) or isinstance(module, inplace_abn.InPlaceABN): 
     do_something(module)
@@ -39,6 +41,6 @@ Conversion can be done easily with the helper function
 if args.use_apex: 
     model, optimizer = apex.amp.initialize(model, optimizer, opt_level=args.opt_level) 
     if args.opt_level == 'O2': # IABN needs adjustment for O2 
-        from src.models.tresnet import IABN2float
-        model = IABN2float(model)
+        from src.models.tresnet import IABN2Float
+        model = IABN2Float(model)
 ```
