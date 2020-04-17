@@ -321,7 +321,7 @@ Comparison of TResNet to state-of-the-art models on transfer learning datasets (
 </p>
 
 
-## Reproduce Results
+## Reproduce Article Scores
 We provide code for reproducing the validation top-1 score of TResNet
 models on ImageNet. First, download pretrained models from
 [here](MODEL_ZOO.md).
@@ -335,6 +335,39 @@ python -m infer.py \
 --model_name=tresnet_m
 --input_size=224
 ```
+## TResNet Training
+Due to IP limitations, we do not provide the exact training code that
+was used to obtain the article results.
+
+However, TResNet is now an integral part of the popular [rwightman /
+pytorch-image-models](https://github.com/rwightman/pytorch-image-models)
+repo. Using that repo, you can reach very similar results to the one
+stated in the article. 
+
+For example, training tresnet_m on [rwightman /
+pytorch-image-models](https://github.com/rwightman/pytorch-image-models) with
+the command line:
+```bash
+python -u -m torch.distributed.launch --nproc_per_node=8 \
+--nnodes=1 --node_rank=0 ./train.py /data/imagenet/ \
+-b=190 --lr=0.6 --model-ema --aa=rand-m9-mstd0.5-inc1 \
+--num-gpu=8 -j=16 --amp \
+--model=tresnet_m --epochs=300 --mixup=0.2 \
+--sched='cosine' --reprob=0.4 --remode=pixel
+```
+gave accuracy of 80.5%, simillar to to article's accuracy. <br><br>
+
+
+Also, during the merge request, we had interesting discussions and
+insights regarding TResNet design. I am attaching a pdf version the
+mention discussions. They can shed more light on TResNet design
+considerations and directions for the future.
+
+[TResNet discussion and insights](oss://miil-public-eu/model-zoo/tresnet/TResnet_discussion.pdf)
+(taken with permission from
+[here](https://github.com/rwightman/pytorch-image-models/issues/124))
+
+
 
 ## Tips For Working With Inplace-ABN
 See
