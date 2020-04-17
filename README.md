@@ -360,10 +360,11 @@ gave accuracy of 80.5%, simillar to to article's accuracy. <br><br>
 
 Also, during the merge request, we had interesting discussions and
 insights regarding TResNet design. I am attaching a pdf version the
-mention discussions. They can shed more light on TResNet design
+mentioned discussions. They can shed more light on TResNet design
 considerations and directions for the future.
 
 [TResNet discussion and insights](oss://miil-public-eu/model-zoo/tresnet/TResnet_discussion.pdf)
+
 (taken with permission from
 [here](https://github.com/rwightman/pytorch-image-models/issues/124))
 
