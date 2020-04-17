@@ -363,7 +363,7 @@ insights regarding TResNet design. I am attaching a pdf version the
 mentioned discussions. They can shed more light on TResNet design
 considerations and directions for the future.
 
-[TResNet discussion and insights](oss://miil-public-eu/model-zoo/tresnet/TResnet_discussion.pdf)
+[TResNet discussion and insights](https://miil-public-eu.oss-eu-central-1.aliyuncs.com/model-zoo/tresnet/TResnet_discussion.pdf)
 
 (taken with permission from
 [here](https://github.com/rwightman/pytorch-image-models/issues/124))
