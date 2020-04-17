@@ -355,7 +355,7 @@ python -u -m torch.distributed.launch --nproc_per_node=8 \
 --model=tresnet_m --epochs=300 --mixup=0.2 \
 --sched='cosine' --reprob=0.4 --remode=pixel
 ```
-gave accuracy of 80.5%, simillar to to article's accuracy. <br><br>
+gave accuracy of 80.5%. <br><br>
 
 
 Also, during the merge request, we had interesting discussions and
