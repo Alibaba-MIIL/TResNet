@@ -38,7 +38,19 @@ Official PyTorch Implementation
 > achieve state-of-the-art accuracy on competitive datasets such as
 > Stanford cars (96.0\%), CIFAR-10 (99.0\%), CIFAR-100 (91.5\%) and
 > Oxford-Flowers (99.1\%)
-## Main Results
+## Sotabench Comparisons
+Comparative results from
+[sotabench benchamrk](https://sotabench.com/benchmarks/image-classification-on-imagenet#code),
+demonstartaing that TReNset models give excellent speed-accuracy tradoff:
+<p align="center">
+ <table class="tg">
+  <tr>
+    <td class="tg-c3ow"><img src="./figures/sotabench.png" align="center" width="700" ></td>
+  </tr>
+</table>
+</p>
+
+## Main Article Results
 #### TResNet Models
 TResNet models accuracy and GPU throughput on ImageNet, compared to ResNet50. All measurements were done on Nvidia V100 GPU, with mixed precision. All models are trained on input resolution of 224.
 <p align="center">
