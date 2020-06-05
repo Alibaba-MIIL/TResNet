@@ -51,7 +51,7 @@ major CVPR-Kaggle competitions:
   <center>
    <table class="tg">
         <thead>
-      <td class="tg-c3ow"><img src="./figures/herbarium_2020.png" align="center" width="300" ></td>
+      <td class="tg-c3ow"><img src="./figures/herbarium_2020.png" align="center" width="350" ></td>
     </thead>
     </table>
   </center>
