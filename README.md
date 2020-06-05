@@ -38,6 +38,19 @@ Official PyTorch Implementation
 > achieve state-of-the-art accuracy on competitive datasets such as
 > Stanford cars (96.0\%), CIFAR-10 (99.0\%), CIFAR-100 (91.5\%) and
 > Oxford-Flowers (99.1\%)
+## CVPR-Kaggle competitions
+We participated and won top places in two
+major CVPR-Kaggle competitions:
+* [2nd place](https://www.kaggle.com/c/herbarium-2020-fgvc7/discussion/154186)
+  in Herbarium 2020 competition, out of 153 teams.
+* [7th place](https://www.kaggle.com/c/plant-pathology-2020-fgvc7/discussion/154086)
+  in Plant-Pathology 2020 competition, out of 1317 teams.   
+  <br> *TResNet* was a vital part of our solution for both competitions,
+  allowing us to work on high resolutions and reach top scores while
+  doing fast and efficient experiments.
+   <table class="tg">
+      <td class="tg-c3ow"><img src="./figures/herbarium_2020.png" align="center" width="200" ></td>
+    </table>
 ## Sotabench Comparisons
 Comparative results from
 [sotabench benchamrk](https://sotabench.com/benchmarks/image-classification-on-imagenet#code),
