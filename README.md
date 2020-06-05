@@ -48,9 +48,14 @@ major CVPR-Kaggle competitions:
   <br> *TResNet* was a vital part of our solution for both competitions,
   allowing us to work on high resolutions and reach top scores while
   doing fast and efficient experiments.
+  <center>
    <table class="tg">
-      <td class="tg-c3ow"><img src="./figures/herbarium_2020.png" align="center" width="200" ></td>
+        <thead>
+      <td class="tg-c3ow"><img src="./figures/herbarium_2020.png" align="center" width="300" ></td>
+    </thead>
     </table>
+  </center>
+
 ## Sotabench Comparisons
 Comparative results from
 [sotabench benchamrk](https://sotabench.com/benchmarks/image-classification-on-imagenet#code),
