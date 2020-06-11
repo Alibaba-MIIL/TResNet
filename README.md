@@ -9,11 +9,11 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tresnet-high-performance-gpu-dedicated/fine-grained-image-classification-on-oxford)](https://paperswithcode.com/sota/fine-grained-image-classification-on-oxford?p=tresnet-high-performance-gpu-dedicated)
 
 
-[paper](https://arxiv.org/pdf/2003.13630.pdf) | [pretrained models](MODEL_ZOO.md) 
+[paperV1](https://arxiv.org/pdf/2003.13630.pdf) | [pretrained models](MODEL_ZOO.md) 
 
 Official PyTorch Implementation
 
-> Tal Ridnik, Hussam Lawen, Asaf Noy, Itamar Friedman <br/>
+> Tal Ridnik, Hussam Lawen, Asaf Noy, Itamar Friedman, Emanuel Ben Baruch, Gilad Sharir<br/>
 > DAMO Academy, Alibaba Group
 
 
@@ -37,8 +37,30 @@ Official PyTorch Implementation
 > top-1 accuracy on ImageNet. Our TResNet models also transfer well and
 > achieve state-of-the-art accuracy on competitive datasets such as
 > Stanford cars (96.0\%), CIFAR-10 (99.0\%), CIFAR-100 (91.5\%) and
-> Oxford-Flowers (99.1\%)
-## CVPR-Kaggle competitions
+> Oxford-Flowers (99.1\%). They also perform well on multi-label classification and object detection tasks.
+## 11/6/2020: V1 of TResNet Article Released
+The Main change - In addition to single label SOTA results, we added also top results for multi-label classification and object detection tasks using TResNet.
+For example, we set a new SOTA record for MS-COCO mult-label dataset, surpassing the previous top results by more than 4% mAP !
+<p align="center">
+ <table>
+  <tr align="center">
+    <th align="center">Bacbkone</th>
+    <th>mAP</th>
+  </tr>
+  <tr>
+    <td align="center">KSSNet</td>
+    <td  align="center">83.7</td>
+  </tr>
+    <tr>
+    <td  align="center">LTResNet</td>
+    <td  align="center"><b>88.0</b></td>
+  </tr>
+  
+</table>
+</p>
+
+
+## 2/6/2020: CVPR-Kaggle competitions
 We participated and won top places in two
 major CVPR-Kaggle competitions:
 * [2nd place](https://www.kaggle.com/c/herbarium-2020-fgvc7/discussion/154186)
@@ -99,14 +121,14 @@ TResNet models accuracy and GPU throughput on ImageNet, compared to ResNet50. Al
     <td>730</td>
     <td><b>2930</b></td>
     <td><b>512</b></td>
-    <td>80.7</td>
+    <td>80.8</td>
   </tr>
   <tr>
     <td>TResNet-L</td>
     <td>345</td>
     <td>1390</td>
     <td>316</td>
-    <td>81.4</td>
+    <td>81.5</td>
   </tr>
   <tr>
     <td>TResNet-XL</td>
@@ -150,7 +172,7 @@ Comparison of ResNet50 to top modern networks, with similar top-1 ImageNet accur
     <td class="tg-0pky">ResNeXt50</td>
     <td class="tg-c3ow">490</td>
     <td class="tg-c3ow">1940</td>
-    <td class="tg-c3ow">78.5</td>
+    <td class="tg-c3ow">79.4</td>
     <td class="tg-c3ow">4.3</td>
   </tr>
   <tr>
@@ -164,7 +186,7 @@ Comparison of ResNet50 to top modern networks, with similar top-1 ImageNet accur
     <td class="tg-0pky">SEResNeXt50</td>
     <td class="tg-c3ow">400</td>
     <td class="tg-c3ow">1770</td>
-    <td class="tg-c3ow">79.0</td>
+    <td class="tg-c3ow">79.9</td>
     <td class="tg-c3ow">4.3</td>
   </tr>
   <tr>
@@ -178,7 +200,7 @@ Comparison of ResNet50 to top modern networks, with similar top-1 ImageNet accur
     <td class="tg-0pky">TResNet-M</td>
     <td class="tg-c3ow">730</td>
    <td class="tg-c3ow"><b>2930</b></td>
-    <td class="tg-c3ow"><b>80.7</b></td>
+    <td class="tg-c3ow"><b>80.8</b></td>
     <td class="tg-c3ow">5.5</td>
   </tr>
 </table>
