@@ -38,7 +38,7 @@ Official PyTorch Implementation
 > Stanford cars (96.0\%), CIFAR-10 (99.0\%), CIFAR-100 (91.5\%) and
 > Oxford-Flowers (99.1\%). They also perform well on multi-label classification and object detection tasks.
 ## 11/6/2020: V1 of TResNet Article Released
-The Main change - In addition to single label SOTA results, we added also top results for multi-label classification and object detection tasks using TResNet.
+The main change - In addition to single label SOTA results, we also added top results for multi-label classification and object detection tasks, using TResNet.
 For example, we set a new SOTA record for MS-COCO mult-label dataset, surpassing the previous top results by more than 4% mAP !
 <p align="center">
  <table>
