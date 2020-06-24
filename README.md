@@ -41,8 +41,8 @@ Official PyTorch Implementation
 The main change - In addition to single label SOTA results, we also
 added top results for multi-label classification and object detection
 tasks, using TResNet. For example, we set a new SOTA record for MS-COCO
-multi-label dataset, surpassing the previous top results by more than 4%
-mAP !
+multi-label dataset, surpassing the previous top results by more than
+2.5% mAP !
 <p align="center">
  <table>
   <tr align="center">
@@ -55,7 +55,7 @@ mAP !
   </tr>
     <tr>
     <td  align="center"><a href="https://arxiv.org/pdf/2003.13630.pdf">TResNet-L</a></td>
-    <td  align="center"><b>88.0</b></td>
+    <td  align="center"><b>86.4</b></td>
   </tr>
   
 </table>
