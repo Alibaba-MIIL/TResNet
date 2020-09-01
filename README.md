@@ -8,7 +8,8 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tresnet-high-performance-gpu-dedicated/fine-grained-image-classification-on-oxford)](https://paperswithcode.com/sota/fine-grained-image-classification-on-oxford?p=tresnet-high-performance-gpu-dedicated)<br>
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tresnet-high-performance-gpu-dedicated/multi-label-classification-on-ms-coco)](https://paperswithcode.com/sota/multi-label-classification-on-ms-coco?p=tresnet-high-performance-gpu-dedicated)<br>
 
-[paperV1](https://arxiv.org/pdf/2003.13630.pdf) | [pretrained models](MODEL_ZOO.md) 
+[paperV2](https://arxiv.org/pdf/2003.13630.pdf) |
+[pretrained models](MODEL_ZOO.md)
 
 Official PyTorch Implementation
 
@@ -37,6 +38,21 @@ Official PyTorch Implementation
 > achieve state-of-the-art accuracy on competitive datasets such as
 > Stanford cars (96.0\%), CIFAR-10 (99.0\%), CIFAR-100 (91.5\%) and
 > Oxford-Flowers (99.1\%). They also perform well on multi-label classification and object detection tasks.
+
+## 28/8/2020: V2 of TResNet Article Released
+
+## Sotabench Comparisons
+Comparative results from
+[sotabench benchamrk](https://sotabench.com/benchmarks/image-classification-on-imagenet#code),
+demonstartaing that TReNset models give excellent speed-accuracy tradoff:
+<p align="center">
+ <table class="tg">
+  <tr>
+    <td class="tg-c3ow"><img src="./figures/sotabench.png" align="center" width="700" ></td>
+  </tr>
+</table>
+</p>
+
 ## 11/6/2020: V1 of TResNet Article Released
 The main change - In addition to single label SOTA results, we also
 added top results for multi-label classification and object detection
@@ -80,17 +96,6 @@ major CVPR-Kaggle competitions:
     </table>
   </center>
 
-## Sotabench Comparisons
-Comparative results from
-[sotabench benchamrk](https://sotabench.com/benchmarks/image-classification-on-imagenet#code),
-demonstartaing that TReNset models give excellent speed-accuracy tradoff:
-<p align="center">
- <table class="tg">
-  <tr>
-    <td class="tg-c3ow"><img src="./figures/sotabench.png" align="center" width="700" ></td>
-  </tr>
-</table>
-</p>
 
 ## Main Article Results
 #### TResNet Models
