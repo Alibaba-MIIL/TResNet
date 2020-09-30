@@ -39,6 +39,16 @@ Official PyTorch Implementation
 > Stanford cars (96.0\%), CIFAR-10 (99.0\%), CIFAR-100 (91.5\%) and
 > Oxford-Flowers (99.1\%). They also perform well on multi-label classification and object detection tasks.
 
+## 30/9/2020: New Paper Released
+We released a new paper, [Asymmetric Loss For Multi-Label
+Classification](https://arxiv.org/abs/2009.14119). <br> The paper
+presents a new novel loss function, that is applicable for tasks with
+inherent data imbalancing - first and foremost multi-label
+classification, and also object detection and fine-grain single-label
+classification. The new paper also describe and expand in details
+preliminary results provided in TResNet paper on MS-COCO multi-label
+dataset. <br> [Github link](https://github.com/Alibaba-MIIL/ASL)
+
 ## 28/8/2020: V2 of TResNet Article Released
 
 ## Sotabench Comparisons
