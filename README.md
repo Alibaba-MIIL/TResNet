@@ -42,7 +42,8 @@ Official PyTorch Implementation
 
 ## 07/01/2021: New SOTA Results
 With better pretraining, Our medium-size newtork, TResNet-L-V2, achieved
-SOTA result on stanford-cars dataset
+SOTA result on stanford-cars dataset, and 3rd place on CIFAR100, while
+being significantly faster and smaller than the competitors.
 
 ## 30/9/2020: New Paper Released
 We released a new paper, [Asymmetric Loss For Multi-Label
