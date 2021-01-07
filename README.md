@@ -1,7 +1,6 @@
 # TResNet: High Performance GPU-Dedicated Architecture
 
 
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tresnet-high-performance-gpu-dedicated/image-classification-on-imagenet)](https://paperswithcode.com/sota/image-classification-on-imagenet?p=tresnet-high-performance-gpu-dedicated)<br>
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tresnet-high-performance-gpu-dedicated/image-classification-on-cifar-10)](https://paperswithcode.com/sota/image-classification-on-cifar-10?p=tresnet-high-performance-gpu-dedicated)<br>
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tresnet-high-performance-gpu-dedicated/image-classification-on-cifar-100)](https://paperswithcode.com/sota/image-classification-on-cifar-100?p=tresnet-high-performance-gpu-dedicated)<br>
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tresnet-high-performance-gpu-dedicated/fine-grained-image-classification-on-stanford)](https://paperswithcode.com/sota/fine-grained-image-classification-on-stanford?p=tresnet-high-performance-gpu-dedicated)<br>
@@ -40,6 +39,10 @@ Official PyTorch Implementation
 > achieve state-of-the-art accuracy on competitive datasets such as
 > Stanford cars (96.0\%), CIFAR-10 (99.0\%), CIFAR-100 (91.5\%) and
 > Oxford-Flowers (99.1\%). They also perform well on multi-label classification and object detection tasks.
+
+## 07/01/2021: New SOTA Results
+With better pretraining, Our medium-size newtork, TResNet-L-V2, achieved
+SOTA result on stanford-cars dataset
 
 ## 30/9/2020: New Paper Released
 We released a new paper, [Asymmetric Loss For Multi-Label
