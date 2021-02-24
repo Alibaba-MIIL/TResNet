@@ -7,52 +7,12 @@ import torch
 from torch.nn import Module as Module
 
 from src.models.tresnet.layers.anti_aliasing import AntiAliasDownsampleLayer
-from .layers.adaptive_avgmax_pool import SelectAdaptivePool2d
-from .layers.general_layers import SEModule, Flatten, SpaceToDepthModule
-from .layers.bottleneck_head import bottleneck_head
+from .layers.avg_pool import FastGlobalAvgPool2d
+from src.models.tresnet.layers.space_to_depth import SpaceToDepthModule
+from .layers.squeeze_and_excite import SEModule
 
 from inplace_abn import InPlaceABN
 from inplace_abn import ABN
-
-model_urls = []  # TBD
-attn_layer = SEModule
-stem_type = SpaceToDepthModule
-
-
-class Linear_normalize(torch.nn.Module):
-    def __init__(self, in_features, out_features, bias=True, normalize_embedding=False,
-                 normalize_weights=False):
-        super(Linear_normalize, self).__init__()
-        self.normalize_embedding = normalize_embedding
-        self.normalize_weights = normalize_weights
-        self.in_features = in_features
-        self.out_features = out_features
-        self.weight = torch.nn.Parameter(torch.Tensor(out_features, in_features))
-        if bias:
-            self.bias = torch.nn.Parameter(torch.Tensor(out_features))
-        else:
-            self.register_parameter('bias', None)
-        self.scale_embeddings = 32
-        self.reset_parameters()
-
-    def reset_parameters(self):
-        torch.nn.init.kaiming_uniform_(self.weight, a=math.sqrt(5))
-        if self.bias is not None:
-            fan_in, _ = torch.nn.init._calculate_fan_in_and_fan_out(self.weight)
-            bound = 1 / math.sqrt(fan_in)
-            torch.nn.init.uniform_(self.bias, -bound, bound)
-
-    def forward(self, input):
-        if self.normalize_embedding:
-            input_t = torch.nn.functional.normalize(input) * self.scale_embeddings
-        else:
-            input_t = input
-        if self.normalize_weights:
-            weights_t = torch.nn.functional.normalize(self.weight)
-        else:
-            weights_t = self.weight
-
-        return torch.nn.functional.linear(input_t, weights_t, self.bias)
 
 
 def InplacABN_to_ABN(module: nn.Module) -> nn.Module:
@@ -116,7 +76,7 @@ class BasicBlock(Module):
         self.downsample = downsample
         self.stride = stride
         reduce_layer_planes = max(planes * self.expansion // 4, 64)
-        self.se = attn_layer(channels=planes * self.expansion, reduction_channels=reduce_layer_planes) if \
+        self.se = SEModule(channels=planes * self.expansion, reduction_channels=reduce_layer_planes) if \
             use_se else None
 
     def forward(self, x):
@@ -164,7 +124,7 @@ class Bottleneck(Module):
         self.stride = stride
 
         reduce_layer_planes = max(planes * self.expansion // 8, 64)
-        self.se = attn_layer(planes, reduce_layer_planes) if use_se else None
+        self.se = SEModule(planes, reduce_layer_planes) if use_se else None
 
     def forward(self, x):
         if self.downsample is not None:
@@ -183,47 +143,26 @@ class Bottleneck(Module):
         return out
 
 
-layer_1_2_type = BasicBlock
-
-
 class TResNetV2(Module):
 
-    def __init__(self, layers, in_chans=3, num_classes=1000, width_factor=1.0,remove_model_jit=False):
+    def __init__(self, layers, in_chans=3, num_classes=1000, width_factor=1.0, remove_model_jit=False):
         super(TResNetV2, self).__init__()
         ## body
         self.inplanes = int(int(64 * width_factor + 4) / 8) * 8
         self.planes = int(int(64 * width_factor + 4) / 8) * 8
-        # print("self.inplanes ={}".format(self.inplanes))
-        if stem_type == SpaceToDepthModule:
-            # JIT layers
-            SpaceToDepth = stem_type(remove_model_jit=remove_model_jit)
-            conv1 = conv2d_ABN(in_chans * 16, self.planes, stride=1, kernel_size=3)
-        else:
-            stem_chs_1 = stem_chs_2 = 32
-            SpaceToDepth = nn.Sequential(*[
-                conv2d_ABN(in_chans, stem_chs_1, kernel_size=3, stride=2,
-                           activation="leaky_relu"),
-                conv2d_ABN(stem_chs_1, stem_chs_2, kernel_size=3, stride=1,
-                           activation="leaky_relu"),
-                conv2d_ABN(stem_chs_2, self.inplanes, kernel_size=3, stride=1,
-                           activation="leaky_relu"),
-                nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
-            ])
-            conv1 = torch.nn.Identity()
+        SpaceToDepth = SpaceToDepthModule(remove_model_jit=remove_model_jit)
+        conv1 = conv2d_ABN(in_chans * 16, self.planes, stride=1, kernel_size=3)
 
         anti_alias_layer = partial(AntiAliasDownsampleLayer, remove_model_jit=remove_model_jit)
-        global_pool_layer = SelectAdaptivePool2d(pool_type='avg', flatten=True)
-        layer1 = self._make_layer(layer_1_2_type, self.planes, layers[0], stride=1, use_se=True,
+        global_pool_layer = FastGlobalAvgPool2d(flatten=True)
+        layer1 = self._make_layer(Bottleneck, self.planes, layers[0], stride=1, use_se=True,
                                   anti_alias_layer=anti_alias_layer)  # 56x56
-        layer2 = self._make_layer(layer_1_2_type, self.planes * 2, layers[1], stride=2, use_se=True,
+        layer2 = self._make_layer(Bottleneck, self.planes * 2, layers[1], stride=2, use_se=True,
                                   anti_alias_layer=anti_alias_layer)  # 28x28
         layer3 = self._make_layer(Bottleneck, self.planes * 4, layers[2], stride=2, use_se=True,
                                   anti_alias_layer=anti_alias_layer)  # 14x14
         layer4 = self._make_layer(Bottleneck, self.planes * 8, layers[3], stride=2, use_se=False,
                                   anti_alias_layer=anti_alias_layer)  # 7x7
-
-        # layer4[-1].relu = nn.Identity()
-        # layer4[-1].conv3[1].bias.requires_grad = False
 
         self.body = nn.Sequential(OrderedDict([
             ('SpaceToDepth', SpaceToDepth),
@@ -295,16 +234,8 @@ def TResnetL_V2(model_params):
     in_chans = 3
     num_classes = model_params['num_classes']
     remove_model_jit = False
-
-
     layers_list = [3, 4, 23, 3]
     width_factor = 1.0
-    global attn_layer
-    global stem_type
-    global layer_1_2_type
-    attn_layer = SEModule
-    stem_type = SpaceToDepthModule
-    layer_1_2_type = Bottleneck
     model = TResNetV2(layers=layers_list, num_classes=num_classes, in_chans=in_chans,
                       width_factor=width_factor, remove_model_jit=remove_model_jit)
     return model
