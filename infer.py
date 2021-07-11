@@ -36,7 +36,7 @@ def main():
 
     # actual validation process
     print('doing validation...')
-    prec1_f, prec5_f = validate(model, val_loader)
+    prec1_f = validate(model, val_loader)
     print("final top-1 validation accuracy: {:.2f}".format(prec1_f.avg))
 
 

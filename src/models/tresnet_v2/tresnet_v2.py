@@ -175,7 +175,7 @@ class TResNetV2(Module):
         # default head
         self.num_features = (self.planes * 8) * Bottleneck.expansion
 
-        fc = nn.Linear(self.num_features * global_pool_layer.feat_mult(), num_classes)
+        fc = nn.Linear(self.num_features , num_classes)
 
         self.global_pool = nn.Sequential(OrderedDict([('global_pool_layer', global_pool_layer)]))
 
@@ -233,7 +233,7 @@ def TResnetL_V2(model_params):
     """
     in_chans = 3
     num_classes = model_params['num_classes']
-    remove_model_jit = False
+    remove_model_jit = True
     layers_list = [3, 4, 23, 3]
     width_factor = 1.0
     model = TResNetV2(layers=layers_list, num_classes=num_classes, in_chans=in_chans,

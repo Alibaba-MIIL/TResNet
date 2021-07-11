@@ -1,5 +1,7 @@
 import logging
 
+from ..tresnet_v2 import TResnetL_V2
+
 logger = logging.getLogger(__name__)
 
 from ..tresnet import TResnetM, TResnetL, TResnetXL
@@ -16,6 +18,8 @@ def create_model(args):
         model = TResnetM(model_params)
     elif args.model_name=='tresnet_l':
         model = TResnetL(model_params)
+    elif args.model_name=='tresnet_l_v2':
+        model = TResnetL_V2(model_params)
     elif args.model_name=='tresnet_xl':
         model = TResnetXL(model_params)
     else:
