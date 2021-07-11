@@ -153,7 +153,7 @@ class TResNetV2(Module):
         SpaceToDepth = SpaceToDepthModule(remove_model_jit=remove_model_jit)
         conv1 = conv2d_ABN(in_chans * 16, self.planes, stride=1, kernel_size=3)
 
-        anti_alias_layer = partial(AntiAliasDownsampleLayer, remove_model_jit=remove_model_jit)
+        anti_alias_layer = partial(AntiAliasDownsampleLayer, remove_aa_jit=remove_model_jit)
         global_pool_layer = FastGlobalAvgPool2d(flatten=True)
         layer1 = self._make_layer(Bottleneck, self.planes, layers[0], stride=1, use_se=True,
                                   anti_alias_layer=anti_alias_layer)  # 56x56
