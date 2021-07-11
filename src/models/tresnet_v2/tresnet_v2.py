@@ -221,10 +221,8 @@ class TResNetV2(Module):
 
     def forward(self, x):
         x = self.body(x)
-        self.embeddings = self.global_pool(x)
-
-        logits = self.head(self.embeddings)
-
+        # self.embeddings = self.global_pool(x)
+        logits = self.head(self.global_pool(x))
         return logits
 
 
@@ -233,7 +231,7 @@ def TResnetL_V2(model_params):
     """
     in_chans = 3
     num_classes = model_params['num_classes']
-    remove_model_jit = True
+    remove_model_jit = False
     layers_list = [3, 4, 23, 3]
     width_factor = 1.0
     model = TResNetV2(layers=layers_list, num_classes=num_classes, in_chans=in_chans,

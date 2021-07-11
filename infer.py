@@ -24,6 +24,9 @@ def main():
     # setup model
     print('creating model...')
     model = create_model(args).cuda()
+    from src.models.tresnet_v2.tresnet_v2 import InplacABN_to_ABN
+    model2 = InplacABN_to_ABN(model)
+    aaa = torch.jit.script(model2)
     state = torch.load(args.model_path, map_location='cpu')['model']
     model.load_state_dict(state, strict=False)
     model.eval()
