@@ -40,6 +40,20 @@ Official PyTorch Implementation
 > Stanford cars (96.0\%), CIFAR-10 (99.0\%), CIFAR-100 (91.5\%) and
 > Oxford-Flowers (99.1\%). They also perform well on multi-label classification and object detection tasks.
 
+## 29/11/2021 Update - New article released, offering new classification head with state-of-the-art results
+Checkout our new project, [Ml-Decoder](https://github.com/Alibaba-MIIL/ML_Decoder), which presents a unified classification head for multi-label, single-label and
+zero-shot tasks. Backbones with ML-Decoder reach SOTA results, while also improving speed-accuracy tradeoff.
+
+<p align="center">
+ <table class="tg">
+  <tr>
+    <td class="tg-c3ow"><img src="./figures/main_pic.png" align="center" width="300""></td>
+    <td class="tg-c3ow"><img src="./figures/ms_coco_scores.png" align="center" width="300" ></td>
+
+  </tr>
+</table>
+</p>
+
 ## 23/4/2021 Update - ImageNet21K Pretraining
 In a new [article](https://github.com/Alibaba-MIIL/ImageNet21K) we released, we share pretrain weights for TResNet models from ImageNet21K training, that dramatically outperfrom standard pretraining.
 TResNet-M model, for example, improves its ImageNet-1K score, from 80.7% to 83.1% !
