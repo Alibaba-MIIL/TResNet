@@ -18,6 +18,7 @@ parser.add_argument('--remove_aa_jit', action='store_true', default=False)
 
 
 def main():
+    aa="aa2"
     # parsing args
     args = parser.parse_args()
 
