@@ -44,7 +44,7 @@ class BasicBlock(nn.Module):
         self.relu = nn.ReLU(inplace=True)
         self.downsample = downsample
         self.stride = stride
-        reduce_layer_planes = max(planes * self.expansion // 4, 64)
+        reduce_layer_planes = max(planes * self.expansion / 4, 64)
         self.se = SEModule(planes * self.expansion, reduce_layer_planes) if use_se else None
 
     def forward(self, x):
